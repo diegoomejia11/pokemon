@@ -78,6 +78,12 @@ public class Main{
         pelea(ganador0, ganador1, pkm0, pkm1);
     }
     
+    /*
+     * Obtiene el índice del Pokémon dado su nombre.
+     * 
+     * @param nombre Nombre del tipo de Pokémon.
+     * @return El índice correspondiente al tipo, o -1 si no se encuentra.
+     */
     public static int indexOf(String nombre){
         for (int i = 0; i < 5; i++){
             if (tipos[i].nombre == nombre){
@@ -87,6 +93,11 @@ public class Main{
         return -1;
     }
 
+    /*
+     * Método que mezcla aleatoriamente un arreglo de enteros.
+     * 
+     * @param array El arreglo de enteros que será mezclado.
+     */
     private static void shuffleArray(int[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             
