@@ -43,39 +43,43 @@ public class Main{
      * Estos se obtienen con las interacciones entre las distintas naturalezas.
      */
     static double[][] combate = {{1.0, 1.0, 1.0, 1.0, 1.0},
-            {1.0, 0.5, 0.5, 2.0, 1.0},
-            {1.0, 2.0, 0.5, 0.5, 1.0},
-            {1.0, 0.5, 2.0, 0.5, 1.0},
-            {1.0, 1.0, 2.0, 0.5, 0.5},
-        }; 
+                                 {1.0, 0.5, 0.5, 2.0, 1.0},
+                                 {1.0, 2.0, 0.5, 0.5, 1.0},
+                                 {1.0, 0.5, 2.0, 0.5, 1.0},
+                                 {1.0, 1.0, 2.0, 0.5, 0.5},
+                                }; 
 
     /*
      * Método principal que ejecuta las batallas Pokémon.
      * Crea a los entrenadores, mezcla sus equipos y realiza las peleas.
      */
     public static void main(String[] args) {
+        // Se inicializan las clases Demian, Axel, Aldo y Diego
         Demian demian = new Demian();
         Axel axel = new Axel();
         Aldo aldo = new Aldo();
         Diego diego = new Diego();
 
-        int[] array = {0, 1, 2, 3};
+        int[] array = {0, 1, 2, 3};  // Se crea un array y se mezcla
         shuffleArray(array);
 
-        Pokemon[][] pokemones = {demian.pokemones, axel.pokemones, aldo.pokemones, diego.pokemones};
-        String[] nombres = {"Demian", "Axel", "Aldo", "Diego"};
+        Pokemon[][] pokemones = {demian.pokemones, axel.pokemones, aldo.pokemones, diego.pokemones};  // Se declaran los pokemones
+        String[] nombres = {"Demian", "Axel", "Aldo", "Diego"};  // Se declaran los nombres
 
+        // Acá los entrenadores del 0 al 3 se calculan consultando la lista de nombres basándose en el array mezclado
         String entrenador0 = nombres[array[0]]; String entrenador1 = nombres[array[1]];
         String entrenador2 = nombres[array[2]]; String entrenador3 = nombres[array[3]];
 
+        // Lo mismo para los pokemones, es importante mantener el orden
         Pokemon[] pokemones0 = pokemones[array[0]]; Pokemon[] pokemones1 = pokemones[array[1]];
         Pokemon[] pokemones2 = pokemones[array[2]]; Pokemon[] pokemones3 = pokemones[array[3]];
         
+        // Se realizan las peleas de #0 vs #1, y #2 vs #3.
         pelea(entrenador0, entrenador1, pokemones0, pokemones1);
-        String ganador0 = global_entrenador; Pokemon[] pkm0 = global_pokemones;
+        String ganador0 = global_entrenador; Pokemon[] pkm0 = global_pokemones;  // Se guarda el ganador de #0 vs #1
         pelea(entrenador2, entrenador3, pokemones2, pokemones3);
-        String ganador1 = global_entrenador; Pokemon[] pkm1 = global_pokemones;
-        pelea(ganador0, ganador1, pkm0, pkm1);
+        String ganador1 = global_entrenador; Pokemon[] pkm1 = global_pokemones;  // Se guarda el ganador de #2 vs #3
+        pelea(ganador0, ganador1, pkm0, pkm1);  // Pelea de (ganador #0 vs #1) vs (ganador #2 vs #3)
     }
     
     /*
@@ -110,8 +114,8 @@ public class Main{
     }
        /* 
         * Simulacion de la pelea de los Pokemones
-        * @param pokemon0 Es un arreglo del primer entrenador
-        * @param pokemon1 ES un arreglo del segundo entrenador 
+        * @param pokemones0 Son los pokemones del primer entrenador
+        * @param pokemones1 Son los pokemones del segundo entrenador 
         * @param nombre0 Es el nombre del primer entrenador
         * @param nombre1 Es el nombre del segundo entrenador
        */
@@ -125,6 +129,10 @@ public class Main{
         System.out.println(nombre1 + " ha seleccionado a " + pokemon1.nombre);
 
         Pokemon[] pkms_pls = {pokemon0, pokemon1};
+        
+        String[] nmb_iterados = {nombre0, nombre1};
+        Pokemon[][] pkm_iterados = {pokemones0, pokemones1};
+
         int iterador = 1;
         //Empieza el arreglo de los pokemones antes elegididos aleatoriamente 
 
@@ -142,7 +150,8 @@ public class Main{
 
             System.out.println(pkm_pl_0.nombre + " usa " + pkm_pl_0.ataque.nombre);
 
-            if (random.nextInt(0,100) < pkm_pl_0.ataque.probabilidad){
+            // Saca un número aleatorio para que el ataque se dé en base a su probabilidad
+            if (random.nextInt(0,100) < pkm_pl_0.ataque.probabilidad){  
                 double multiplier = combate[indexOf(pkm_pl_0.ataque.tipo.nombre)][indexOf(pkm_pl_1.tipo.nombre)];
                 if (multiplier == 2.0){ //Verifica la efectividad de cada ataque
                     System.out.println("¡Es super efectivo!");
@@ -156,20 +165,14 @@ public class Main{
                 System.out.println(pokemon0.nombre + " falló el ataque");
             }
 
-            if (pkm_pl_0.HP < 0){//Verifica si el pokemon del jugador2 le gano al jugador1
-                peleando = false;
-                global_entrenador = nombre1;// Verifica si el pokemon fue derrotado del o si el que esta defendiendo pierde 
-                global_pokemones = pokemones1;
-            }
-            if (pkm_pl_1.HP < 0){
-                peleando = false;
-                global_entrenador = nombre0;//El pokemon que atacante gana o pierde 
-                global_pokemones = pokemones0;
+            if (pkm_pl_1.HP < 0){ //Verifica si la vida del pokemon siendo atacado es menor a 0
+                peleando = false; // Se detiene la pelea
+                global_entrenador = nmb_iterados[iterador]; // Se guardan el nombre y los pokemones del ganador
+                global_pokemones = pkm_iterados[iterador];
             }
         };
 
-        System.out.println("¡" + global_entrenador + " ha ganado!\n");
-        //Da el ganador de la pelea
+        System.out.println("¡" + global_entrenador + " ha ganado!\n");  // Avisa quién ganó
     }
 
 }
