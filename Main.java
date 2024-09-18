@@ -20,8 +20,6 @@ public class Main{
             {1.0, 1.0, 2.0, 0.5, 0.5},
         }; 
     public static void main(String[] args) {
-
-
         Demian demian = new Demian();
         Axel axel = new Axel();
         Aldo aldo = new Aldo();
@@ -44,7 +42,6 @@ public class Main{
         pelea(entrenador2, entrenador3, pokemones2, pokemones3);
         String ganador1 = global_entrenador; Pokemon[] pkm1 = global_pokemones;
         pelea(ganador0, ganador1, pkm0, pkm1);
-
     }
     public static int indexOf(String nombre){
         for (int i = 0; i < 5; i++){
@@ -52,7 +49,6 @@ public class Main{
                 return i;
             }
         }
-
         return -1;
     }
 
@@ -69,7 +65,6 @@ public class Main{
 
     public static void pelea(String nombre0, String nombre1, Pokemon[] pokemones0, Pokemon[] pokemones1){
         System.out.println("¡" + nombre0 + " ha retado a " + nombre1 + "!");
-
         
         Pokemon pokemon0 = pokemones0[random.nextInt(6)];
         Pokemon pokemon1 = pokemones1[random.nextInt(6)];
@@ -77,33 +72,45 @@ public class Main{
         System.out.println(nombre0 + " ha seleccionado a " + pokemon0.nombre);
         System.out.println(nombre1 + " ha seleccionado a " + pokemon1.nombre);
 
+        Pokemon[] pkms_pls = {pokemon0, pokemon1};
+        int iterador = 1;
+
         boolean peleando = true;
 
         while(peleando){
-            System.out.println(pokemon0.nombre + " usa " + pokemon0.ataque.nombre);
+            iterador = 1-iterador;
 
-            if (random.nextInt(0,100) < pokemon0.ataque.probabilidad){
-                double multiplier = combate[indexOf(pokemon0.ataque.tipo.nombre)][indexOf(pokemon1.tipo.nombre)];
+            Pokemon pkm_pl_0 = pkms_pls[iterador];
+            Pokemon pkm_pl_1 = pkms_pls[1-iterador];
+
+            System.out.println(pkm_pl_0.nombre + " usa " + pkm_pl_0.ataque.nombre);
+
+            if (random.nextInt(0,100) < pkm_pl_0.ataque.probabilidad){
+                double multiplier = combate[indexOf(pkm_pl_0.ataque.tipo.nombre)][indexOf(pkm_pl_1.tipo.nombre)];
                 if (multiplier == 2.0){
                     System.out.println("¡Es super efectivo!");
                 }
                 if (multiplier == 0.5){
                     System.out.println("No es muy efectivo");
                 }
-                
+                pkm_pl_1.HP -= pkm_pl_0.ataque.poder * multiplier;
             } else {
                 System.out.println(pokemon0.nombre + " falló el ataque");
             }
 
+            if (pkm_pl_0.HP < 0){
+                peleando = false;
+                global_entrenador = nombre1;
+                global_pokemones = pokemones1;
+            }
+            if (pkm_pl_1.HP < 0){
+                peleando = false;
+                global_entrenador = nombre0;
+                global_pokemones = pokemones0;
+            }
         };
 
-
-        //pelien
-
-        global_entrenador = "holi";
-        global_pokemones = pokemones0;
-
-        System.out.println("¡" + global_entrenador + " ha ganado!");
+        System.out.println("¡" + global_entrenador + " ha ganado!\n");
     }
 
 }
