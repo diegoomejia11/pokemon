@@ -1,4 +1,4 @@
-
+import A.*;
 public class Diego{
 
     public statiic void main(String[]args){
