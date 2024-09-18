@@ -51,7 +51,7 @@ public class Main{
          *      ELECTRICO
          * Pikachu
          * Voltrob
-         * Electrabuzz
+         * Electabuzz
          * Jolteon
          * Zapdos
          * 
