@@ -10,7 +10,7 @@ public class Aldo {
         new Pokemon("Charmander", new Tipo ("fuego"), new Ataque("Flamethrower", new Tipo("fuego"),95, 100), 39),
 
         // Pokémon de tipo Eléctrico
-        new Pokemon("Pikachu", new Tipo ("eléctrico"), new Ataque("Thunderbolt", new Tipo("electrico"),95, 100), 35),
+        new Pokemon("Pikachu", new Tipo ("electrico"), new Ataque("Thunderbolt", new Tipo("electrico"),95, 100), 35),
 
         // Pokémon de tipo Agua
         new Pokemon("Poliwag", new Tipo ("agua"), new Ataque("Hydro Pump", new Tipo("agua"),110, 80), 40),
