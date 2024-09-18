@@ -97,10 +97,16 @@ public class Main{
             array[index] = temp;
         }
     }
-
+       /* 
+        * Simulacion de la pelea de los Pokemones
+        * @param pokemon0 Es un arreglo del primer entrenador
+        * @param pokemon1 ES un arreglo del segundo entrenador 
+        * @param nombre0 Es el nombre del primer entrenador
+        * @param nombre1 Es el nombre del segundo entrenador
+       */
     public static void pelea(String nombre0, String nombre1, Pokemon[] pokemones0, Pokemon[] pokemones1){
         System.out.println("¡" + nombre0 + " ha retado a " + nombre1 + "!");
-        
+         //Selecciona  aleatoriamente de un pokemon  para cada entrenador 
         Pokemon pokemon0 = pokemones0[random.nextInt(6)];
         Pokemon pokemon1 = pokemones1[random.nextInt(6)];
 
@@ -109,22 +115,27 @@ public class Main{
 
         Pokemon[] pkms_pls = {pokemon0, pokemon1};
         int iterador = 1;
+        //Empieza el arreglo de los pokemones antes elegididos aleatoriamente 
 
         boolean peleando = true;
+        //Esta determina el Estado de la pelea
 
         while(peleando){
             iterador = 1-iterador;
+            //Cambia de entre dos entrenadores
 
             Pokemon pkm_pl_0 = pkms_pls[iterador];
+            //Pokemon del jugador1
             Pokemon pkm_pl_1 = pkms_pls[1-iterador];
+            //Pokemon del jugador2
 
             System.out.println(pkm_pl_0.nombre + " usa " + pkm_pl_0.ataque.nombre);
 
             if (random.nextInt(0,100) < pkm_pl_0.ataque.probabilidad){
                 double multiplier = combate[indexOf(pkm_pl_0.ataque.tipo.nombre)][indexOf(pkm_pl_1.tipo.nombre)];
-                if (multiplier == 2.0){
+                if (multiplier == 2.0){ //Verifica la efectividad de cada ataque
                     System.out.println("¡Es super efectivo!");
-                }
+                } //Si es  muy efectivo salta el ""
                 if (multiplier == 0.5){
                     System.out.println("No es muy efectivo");
                 }
