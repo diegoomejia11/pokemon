@@ -19,14 +19,4 @@ public class Aldo {
         new Pokemon("Tangela", new Tipo ("planta"), new Ataque("Vine whip", new Tipo("planta"),35, 100), 65)
 
     };
-    public static void main (String[]args){
-
-        System.out.println("¡Rattata yo te eligo!");
-            System.out.println("¡Meowth yo te eligo!");
-            System.out.println("¡Charmander yo te eligo!");
-            System.out.println("¡Pikachu yo te eligo, listo para usar el Thunderbolt!");
-            System.out.println("¡Poliwag yo te eligo!");
-            System.out.println("¡Tangela yo te eligo!");
-
-    }
 }

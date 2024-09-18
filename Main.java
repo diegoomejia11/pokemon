@@ -1,24 +1,58 @@
 import A.*;
 import java.util.Random;
-
+/*
+ * @author Jorge Demian Muñoz Marín   
+ * @author Irving Axel Tapia Anrubio    
+ * @author Aldo Jael Cervantes González   
+ * @author Diego Mejía Arroyo
+ * 
+ * @version 1.0
+ * 
+ * Clase principal que realiza batallas Pokémon entre entrenadores.
+ * Contiene la lógica de los combates y la aleatorización de los equipos.
+ */
 public class Main{
+    /*
+     * Nombre del entrenador que ha ganado la última batalla.
+     */
     static String global_entrenador;
-    static Pokemon[] global_pokemones;
 
+    /*
+     * Arreglo de Pokémon del entrenador ganador de la última batalla.
+     */
+    static Pokemon[] global_pokemones;
+    
+    /*
+     * Arreglo de objetos de la clase Tipo que representa los tipos de Pokémon (normal, fuego, agua, planta, eléctrico).
+     */
     static Tipo[] tipos = {new Tipo("normal"),
                            new Tipo("fuego"),
                            new Tipo("agua"),
                            new Tipo("planta"),
                            new Tipo("electrico")};
 
+
+    /*
+     * Inicializador de objeto Random para la generación de valores aleatorios.
+     */
     static Random random = new Random();
 
+    /*
+     * Matriz que representa la efectividad de los ataques en la batallas Pokémon.
+     * Indica si un ataque es super efectivo (2.0), no muy efectivo (0.5), o neutral (1.0).
+     * Estos se obtienen con las interacciones entre las distintas naturalezas.
+     */
     static double[][] combate = {{1.0, 1.0, 1.0, 1.0, 1.0},
             {1.0, 0.5, 0.5, 2.0, 1.0},
             {1.0, 2.0, 0.5, 0.5, 1.0},
             {1.0, 0.5, 2.0, 0.5, 1.0},
             {1.0, 1.0, 2.0, 0.5, 0.5},
         }; 
+
+    /*
+     * Método principal que ejecuta las batallas Pokémon.
+     * Crea a los entrenadores, mezcla sus equipos y realiza las peleas.
+     */
     public static void main(String[] args) {
         Demian demian = new Demian();
         Axel axel = new Axel();
@@ -43,6 +77,7 @@ public class Main{
         String ganador1 = global_entrenador; Pokemon[] pkm1 = global_pokemones;
         pelea(ganador0, ganador1, pkm0, pkm1);
     }
+    
     public static int indexOf(String nombre){
         for (int i = 0; i < 5; i++){
             if (tipos[i].nombre == nombre){

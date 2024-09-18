@@ -10,11 +10,4 @@ public class Demian {
         new Pokemon("Seel", new Tipo("agua"), new Ataque("Headbutt", new Tipo("normal"), 70, 100), 65),
         new Pokemon("Vaporeon", new Tipo("agua"), new Ataque("Water gun", new Tipo("agua"), 40, 100), 130)
     };
-    public static void main(String[] args){
-
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
 }

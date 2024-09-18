@@ -8,7 +8,4 @@ public class Diego{
         new Pokemon ("Articuno", new Tipo("agua"), new Ataque("Ventisca", new Tipo("agua"), 110, 70), 90),
         new Pokemon("Zapdos", new Tipo("electrico"), new Ataque("Trueno", new Tipo ("electrico"),110, 70), 90)
     };
-    public static void main(String[]args){
-
-    }
 }
