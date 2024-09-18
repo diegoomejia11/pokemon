@@ -135,28 +135,30 @@ public class Main{
                 double multiplier = combate[indexOf(pkm_pl_0.ataque.tipo.nombre)][indexOf(pkm_pl_1.tipo.nombre)];
                 if (multiplier == 2.0){ //Verifica la efectividad de cada ataque
                     System.out.println("¡Es super efectivo!");
-                } //Si es  muy efectivo salta el ""
+                } //Si es  muy efectivo salta el "Es super efectivo"
                 if (multiplier == 0.5){
                     System.out.println("No es muy efectivo");
+                    //Si no es  muy efectivo salta el "No es muy efectivo"
                 }
                 pkm_pl_1.HP -= pkm_pl_0.ataque.poder * multiplier;
             } else {
                 System.out.println(pokemon0.nombre + " falló el ataque");
             }
 
-            if (pkm_pl_0.HP < 0){
+            if (pkm_pl_0.HP < 0){//Verifica si el pokemon del jugador2 le gano al jugador1
                 peleando = false;
-                global_entrenador = nombre1;
+                global_entrenador = nombre1;// Verifica si el pokemon fue derrotado del o si el que esta defendiendo pierde 
                 global_pokemones = pokemones1;
             }
             if (pkm_pl_1.HP < 0){
                 peleando = false;
-                global_entrenador = nombre0;
+                global_entrenador = nombre0;//El pokemon que atacante gana o pierde 
                 global_pokemones = pokemones0;
             }
         };
 
         System.out.println("¡" + global_entrenador + " ha ganado!\n");
+        //Da el ganador de la pelea
     }
 
 }
