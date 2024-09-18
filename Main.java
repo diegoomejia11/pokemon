@@ -1,4 +1,5 @@
 import A.*;
+import java.util.Random;
 
 public class Main{
     static Tipo[] tipos = {new Tipo("normal"),
@@ -14,56 +15,19 @@ public class Main{
                               {1.0, 1.0, 2.0, 0.5, 0.5},
                             }; 
 
-        // Necesitamos máximo 24 pokemones diferentes de alguno de los 5 tipos
-        // Cada pokemón necesita solo 1 ataque
+        Demian demian = new Demian();
+        Axel axel = new Axel();
+        Aldo aldo = new Aldo();
+        Diego diego = new Diego();
 
-        // Usen esta página: https://pokemon.fandom.com/wiki/Category:Generation_I_Pok%C3%A9mon
-        // Tiene una lista de los pokemones de primera generación con la info de c/u
+        int[] array = {0, 1, 2, 3};
+        shuffleArray(array);
 
-        /**
-         *      NORMAL
-         * Rattata
-         * Meowth
-         * Ditto
-         * Eeve
-         * Snorlax
-         * 
-         *      FUEGO
-         * Charmander
-         * Vulpix
-         * Ponyta
-         * Flareon
-         * Moltres
-         * 
-         *      AGUA
-         * Squirtle
-         * Psyduck
-         * Poliwag
-         * Seel
-         * Staryu
-         * Magikarp
-         * Vaporeon
-         * Articuno
-         * 
-         *      PLANTA
-         * Tangela
-         * 
-         *      ELECTRICO
-         * Pikachu
-         * Voltrob
-         * Electabuzz
-         * Jolteon
-         * Zapdos
-         * 
-         */
+        Pokemon[][] pokemones = {demian.pokemones, axel.pokemones, aldo.pokemones, diego.pokemones};
+        String[] nombres = {"Demian", "Axel", "Aldo", "Diego"};
 
-
-
-        //Entrenador Demian = new Entrenador();
-
-        // Hacedor de combates
-
-        // 1 2 - 2 1 -> g v G
+        System.out.println(nombres[array[0]] + " vs " + nombres[array[1]]);
+        System.out.println(nombres[array[2]] + " vs " + nombres[array[3]]);
 
         // Ciclo de pelea{}
     }
@@ -75,6 +39,17 @@ public class Main{
         }
 
         return -1;
+    }
+
+    private static void shuffleArray(int[] array) {
+        for (int i = array.length - 1; i > 0; i--) {
+            Random random = new Random();
+            int index = random.nextInt(i + 1);
+            // Swap array[i] with array[index]
+            int temp = array[i];
+            array[i] = array[index];
+            array[index] = temp;
+        }
     }
 
 }
