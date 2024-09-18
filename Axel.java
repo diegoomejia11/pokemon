@@ -11,5 +11,7 @@ public class Axel {
             new Pokemon("Staryu", new Tipo("agua"), new Ataque("hidrobomba", new Tipo("agua"), 120, 80), 30)
             
         };
+
+        System.out.println("Vamos, yo te elijo. ¡¡¡TÚ PUEDES!!!");
     }
 }
